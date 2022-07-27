@@ -10,7 +10,7 @@ atexit.register(lambda: con.close())
 # Create table
 cur.execute('''CREATE TABLE IF NOT EXISTS places
                (place_id INTEGER PRIMARY KEY,
-                name TEXT, google_link TEXT, rating INTEGER)''')
+                name TEXT, link TEXT, rating INTEGER)''')
 cur.execute('''CREATE TABLE IF NOT EXISTS criterions
                (criterion_id INTEGER PRIMARY KEY,
                 name TEXT, description TEXT)''')
