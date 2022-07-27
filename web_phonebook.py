@@ -54,6 +54,7 @@ def phones_page():
         name = str(request.query.name)
         phone = str(request.query.phone)
         finds = search(name, phone, phone_table)
+        finds = [("OdyMisada", "https://www.youtube.com/watch?v=dQw4w9WgXcQ", 4.5, [("Vegan", "ONLY MEAT", 5)])]
         print('requested name:', name)
     except ValueError as e:
         print('no name request')
@@ -61,6 +62,6 @@ def phones_page():
     return template(template_file, finds=finds)
 
 if __name__ == '__main__':
-    phone_table = load_phones('phones.csv')
+    phone_table = load_phones('.\phones.csv')
     print(phone_table)
     run()

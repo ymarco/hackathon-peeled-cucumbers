@@ -40,16 +40,33 @@
     <p/>
         <table width="80%">
           <tr>
-            <th>order</th>
-            <th>number</th>
+            <th>Name</th>
+            <th>Rating</th>
+            <th>More</th>
           </tr>
           <tbody>
-    % for name,phone in finds:
+    % for name, link, rating, criterions in finds:
     %
             <tr>
-              <td>{{name}}</td>
-              <td>{{phone}}
-              </td>
+              <td><a href="{{link}}"">{{name}}</a></td>
+              <td>{{rating}}/5<td>
+              <table>
+                <tr>
+                  <th>Criterion</th>
+                  <th>Description</th>
+                  <th>Criterion Rating</th>
+                </tr>
+                <tbody>
+                  % for cname, cdesc, crating in criterions:
+                  %
+                    <tr>
+                      <td>{{cname}}</td>
+                      <td>{{cdesc}}</td>
+                      <td>{{crating}}/5</td>
+                    </tr>
+                  % end
+                </tbody>
+              </table>
             </tr>
      % end
          </tbody>
