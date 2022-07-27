@@ -1,0 +1,59 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Phone Book</title>
+        <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+        </style>
+  </head>
+  <body>
+    <header>
+        <h1>Look For Phones</h1>
+    </header>
+
+        <form  action="/phones" method="GET">
+          <p> Search by name </p>
+          <input type="text" name="name" placeholder="Enter a name" />
+
+          <p> or, search by number </p>
+          <input type="text" name="phone" placeholder="Enter by number" />
+
+          <button type="submit" >Refresh</button>
+        </form>
+    <p/>
+    <p/>
+        <table width="80%">
+          <tr>
+            <th>order</th>
+            <th>number</th>
+          </tr>
+          <tbody>
+    % for name,phone in finds:
+    %
+            <tr>
+              <td>{{name}}</td>
+              <td>{{phone}}
+              </td>
+            </tr>
+     % end
+         </tbody>
+        </table>
+  </body>
+</html>
+
