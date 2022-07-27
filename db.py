@@ -27,6 +27,8 @@ cur.execute('''CREATE TABLE IF NOT EXISTS place_criterions
 
 # Save (commit) the changes
 con.commit()
+max_places_id = next(cur.execute("SELECT MAX(place_id) FROM places"))[0]
+max_criterions_id = next(cur.execute("SELECT MAX(criterion_id) FROM criterions"))[0]
 
 # We can also close the connection if we are done with it.
 # Just be sure any changes have been committed or they will be lost.
@@ -44,4 +46,21 @@ SELECT c.name, c.description, pc.value FROM criterions c
 JOIN place_criterions pc ON pc.criterion_id = c.criterion_id
     ''')
     return place[1], place[2], place[3], list(criterions)
-print(get_place_profile(0))
+
+def add_place(name, link, rating):
+    global max_places_id
+    max_places_id += 1
+    cur.execute("INSERT INTO places VALUES (%, %, %, %)", (max_places_id,
+                                                           name, link, rating))
+    con.commit()
+
+def add_criterion(name, description):
+    global max_criterions_id
+    max_criterions_id += 1
+    cur.execute("INSERT INTO criterions VALUES (%, %, %)", (max_criterions_id,
+                                                            name, description))
+    con.commit()
+
+def add_place_criterion(place_id, criterion_id, value):
+    cur.execute("INSERT INTO place_criterions VALUES (%, %, %)", (place_id, criterion_id, value))
+    con.commit()
