@@ -82,3 +82,9 @@ def add_place_criterion(place_id, criterion_id, value):
     cur.execute("INSERT INTO place_criterions VALUES (?, ?, ?)", (place_id,
                                                                   criterion_id, value))
     con.commit()
+
+
+def remove_place_criterion(place_id, criterion_id):
+    cur.execute("DELETE FROM place_criterions place_id=? AND criterion_id=?", (place_id,
+                                                                               criterion_id))
+    con.commit()
