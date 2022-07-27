@@ -43,5 +43,5 @@ def get_place_profile(id):
 SELECT c.name, c.description, pc.value FROM criterions c
 JOIN place_criterions pc ON pc.criterion_id = c.criterion_id
     ''')
-    return place, list(criterions)
+    return place[1], place[2], place[3], list(criterions)
 print(get_place_profile(0))

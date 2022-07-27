@@ -1,7 +1,5 @@
-import collections
 from bottle import route, run, template, request, redirect, response, static_file
-import json
-import csv
+import db
 import re
 import os
 
@@ -13,6 +11,7 @@ def phones_page():
     try:
         name = str(request.query.name)
         phone = str(request.query.phone)
+        finds = [db.get_place_profile(0)]
         finds = [("OdyMisada", "https://www.youtube.com/watch?v=dQw4w9WgXcQ", 4.5, [("Vegan", "ONLY MEAT", 5)])]
         print('requested name:', name)
     except ValueError as e:
