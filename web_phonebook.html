@@ -1,10 +1,10 @@
 <!doctype html>
 <html class="no-js" lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Foollergy</title>
-        <style>
+    <style>
         table {
             font-family: arial, sans-serif;
             border-collapse: collapse;
@@ -20,71 +20,72 @@
         tr:nth-child(even) {
             background-color: #dddddd;
         }
-        </style>
-  </head>
-  <body>
-    <header>
-        <h1>Look for a restaurant</h1>
-    </header>
+    </style>
+</head>
+<body>
+<header>
+    <h1>Look for a restaurant</h1>
+</header>
 
-        <form  action="/foollergy" method="GET">
-          <p> Search by name </p>
-          <input type="text" name="name" placeholder="Enter a name" />
+<form action="/foollergy" method="GET">
+    <p> Search by name </p>
+    <input type="text" name="name" placeholder="Enter a name"/>
 
-          <p> Search by criterion </p>
-          <select>
-            <option value="vegan">Vegan</option>
-            <option value="milk allergy">Milk Allergy</option>
-          </select>
+    <p> Search by criterion </p>
+    <select>
+        <option value="vegan">Vegan</option>
+        <option value="milk allergy">Milk Allergy</option>
+    </select>
 
-          <button type="submit" >Refresh</button>
-        </form>
-    <p/>
-    <p/>
-        <table width="80%">
-          <tr>
-            <th>Name</th>
-            <th>Rating</th>
-            <th>More</th>
-          </tr>
-          <tbody>
+    <button type="submit">Refresh</button>
+</form>
+<p/>
+<p/>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Rating</th>
+        <th>More</th>
+    </tr>
+    <tbody>
     % for name, link, rating, criterions in finds:
     %
-            <tr>
-              <td><a href="{{link}}">{{name}}</a></td>
-              <td>{{rating}}/5<td>
-              <table>
+    <tr>
+        <td><a href="{{link}}">{{name}}</a></td>
+        <td>{{rating}}/5
+        <td>
+            <table>
                 <tr>
-                  <th>Criterion</th>
-                  <th>Description</th>
-                  <th>Criterion Rating</th>
+                    <th>Criterion</th>
+                    <th>Description</th>
+                    <th>Criterion Rating</th>
                 </tr>
                 <tbody>
-                  % for cname, cdesc, crating in criterions:
-                  %
-                    <tr>
-                      <td>{{cname}}</td>
-                      <td>{{cdesc}}</td>
-                      <td>{{crating}}</td>
-                    </tr>
-                  % end
+                % for cname, cdesc, crating in criterions:
+                %
+                <tr>
+                    <td>{{cname}}</td>
+                    <td>{{cdesc}}</td>
+                    <td>{{crating}}</td>
+                </tr>
+                % end
                 </tbody>
-              </table>
-            </tr>
-     % end
-         </tbody>
-        </table>
+            </table>
+    </tr>
+    % end
+    </tbody>
+</table>
 
-        <p>
-          Want to add a restaurant or a criterion to an existing restaurant on our website?
-        </p>
-        <form  action="/add_place" method="GET">
-          <p> Add Place </p>
-          <input type="text" name="name" placeholder="Place name" />
-          <input type="text" name="link" placeholder="Link" />
-          <input type="text" name="rating" placeholder="Rating" />
-          <button type="submit"> Add </button>
-        </form>
-  </body>
+<p>
+    Want to add a restaurant or a criterion to an existing restaurant on our website?
+</p>
+<form action="/add_place" method="GET">
+    <p> Add Place </p>
+    <input type="text" name="name" placeholder="Place name"/>
+    <input type="text" name="link" placeholder="Link"/>
+    <input type="text" name="rating" placeholder="Rating"/>
+    <button type="submit"> Add</button>
+</form>
+</body>
 </html>
 
