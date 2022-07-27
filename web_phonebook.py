@@ -44,9 +44,16 @@ def index():
         </html>
         """)
 
+@route('/add_place')
+def add_restaurant_page():
+    pass
 
-@route('/phones')
-def phones_page():
+@route('/add_criterion')
+def add_criteion_page():
+    pass
+
+@route('/foollergy')
+def main_page():
     template_dir = os.path.split(os.path.abspath(__file__))[0]
     template_name = "web_phonebook.html"
     template_file = os.path.join(template_dir, template_name)

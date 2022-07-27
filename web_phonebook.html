@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Phone Book</title>
+    <title>Foollergy</title>
         <style>
         table {
             font-family: arial, sans-serif;
@@ -24,15 +24,18 @@
   </head>
   <body>
     <header>
-        <h1>Look For Phones</h1>
+        <h1>Look for a restaurant</h1>
     </header>
 
-        <form  action="/phones" method="GET">
+        <form  action="/foollergy" method="GET">
           <p> Search by name </p>
           <input type="text" name="name" placeholder="Enter a name" />
 
-          <p> or, search by number </p>
-          <input type="text" name="phone" placeholder="Enter by number" />
+          <p> Search by criterion </p>
+          <select>
+            <option value="vegan">Vegan</option>
+            <option value="milk allergy">Milk Allergy</option>
+          </select>
 
           <button type="submit" >Refresh</button>
         </form>
@@ -48,7 +51,7 @@
     % for name, link, rating, criterions in finds:
     %
             <tr>
-              <td><a href="{{link}}"">{{name}}</a></td>
+              <td><a href="{{link}}">{{name}}</a></td>
               <td>{{rating}}/5<td>
               <table>
                 <tr>
@@ -71,6 +74,11 @@
      % end
          </tbody>
         </table>
+        <p>
+          Want to add a restaurant or a criterion to an existing restaurant on our website?
+        </p>
+        <a href="./add_place">Add Restaurant</a>
+        <a href="./add_criterion">Add Criterion</a>
   </body>
 </html>
 
