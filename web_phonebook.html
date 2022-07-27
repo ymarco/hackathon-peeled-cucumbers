@@ -74,11 +74,17 @@
      % end
          </tbody>
         </table>
+
         <p>
           Want to add a restaurant or a criterion to an existing restaurant on our website?
         </p>
-        <a href="./add_place">Add Restaurant</a>
-        <a href="./add_criterion">Add Criterion</a>
+        <form  action="/add_place" method="GET">
+          <p> Add Place </p>
+          <input type="text" name="name" placeholder="Place name" />
+          <input type="text" name="link" placeholder="Link" />
+          <input type="text" name="rating" placeholder="Rating" />
+          <button type="submit"> Add </button>
+        </form>
   </body>
 </html>
 

@@ -50,17 +50,18 @@ JOIN place_criterions pc ON pc.criterion_id = c.criterion_id
 def add_place(name, link, rating):
     global max_places_id
     max_places_id += 1
-    cur.execute("INSERT INTO places VALUES (%, %, %, %)", (max_places_id,
+    cur.execute("INSERT INTO places VALUES (?, ?, ?, ?)", (max_places_id,
                                                            name, link, rating))
     con.commit()
 
 def add_criterion(name, description):
     global max_criterions_id
     max_criterions_id += 1
-    cur.execute("INSERT INTO criterions VALUES (%, %, %)", (max_criterions_id,
+    cur.execute("INSERT INTO criterions VALUES (?, ?, ?)", (max_criterions_id,
                                                             name, description))
     con.commit()
 
 def add_place_criterion(place_id, criterion_id, value):
-    cur.execute("INSERT INTO place_criterions VALUES (%, %, %)", (place_id, criterion_id, value))
+    cur.execute("INSERT INTO place_criterions VALUES (?, ?, ?)", (place_id,
+                                                                  criterion_id, value))
     con.commit()

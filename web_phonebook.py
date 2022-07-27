@@ -25,5 +25,11 @@ def main_page():
         finds = []
     return template(template_file, finds=finds)
 
+@route('/add_place')
+def add_place():
+    name, link, rating = request.query.name, request.query.link, request.query.rating
+    db.add_place(name, link, rating)
+    redirect("/")
+
 if __name__ == '__main__':
     run()
