@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Foollergy</title>
+    <title>AllergEat</title>
     <style>
         table {
             font-family: arial, sans-serif;
@@ -52,31 +52,35 @@
         <th>Name</th>
         <th>Rating</th>
         <th>More</th>
+        <th></th>
     </tr>
     <tbody>
     % for name, link, rating, criterions in finds:
     %
     <tr>
         <td><a href="{{link}}">{{name}}</a></td>
-        <td>{{rating}}/5
+        <td>{{rating}}/5</td>
         <td>
             <table>
                 <tr>
                     <th>Criterion</th>
                     <th>Description</th>
-                    <th>Criterion Rating</th>
                 </tr>
                 <tbody>
-                % for cname, cdesc, crating in criterions:
+                % for cname, cdesc in criterions:
                 %
                 <tr>
                     <td>{{cname}}</td>
                     <td>{{cdesc}}</td>
-                    <td>{{crating}}</td>
                 </tr>
                 % end
                 </tbody>
             </table>
+        </td>
+        <td>
+            <p>Leave a review:</p>
+            <button>Review</button>
+        </td>
     </tr>
     % end
     </tbody>
@@ -87,10 +91,20 @@
 </p>
 <form action="/add_place" method="GET">
     <p> Add Place </p>
-    <input type="text" name="name" placeholder="Place name"/>
+    <input type="text" name="name" placeholder="Place Name"/>
     <input type="text" name="link" placeholder="Link"/>
     <input type="text" name="rating" placeholder="Rating"/>
     <button type="submit"> Add</button>
+</form>
+
+<p>
+    Want to add a new criterion to our website?
+</p>
+<form action="/add_new_criterion" method="GET">
+    <p>Add criterion</p>
+    <input type="text" name="cname" placeholder="Criterion Name"/>
+    <input type="text" name="cdescription" placeholder="Criterion Description"/>
+    <button>Add</button>
 </form>
 </body>
 </html>

@@ -4,7 +4,10 @@ import os
 
 
 def search():
-    name_filtered = db.search_by_name(str(request.query["name"]))
+    try:
+        name_filtered = db.search_by_name(str(request.query["name"]))
+    except KeyError:
+        return []
 
     filtered = []
     for id, name, link, rating in name_filtered:
@@ -23,13 +26,8 @@ def search():
     return filtered
 
 
-@route('/add_place')
-def add_restaurant_page():
-    pass
-
-
-@route('/add_criterion')
-def add_criteion_page():
+@route('/add_new_criterion')
+def add_new_criterion():
     pass
 
 
@@ -57,4 +55,4 @@ def add_place():
 
 
 if __name__ == '__main__':
-    run()
+    run(host="0.0.0.0", port=80)
