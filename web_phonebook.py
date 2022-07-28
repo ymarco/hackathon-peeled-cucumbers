@@ -1,6 +1,26 @@
-from bottle import route, run, template, request, redirect, response, static_file
+from bottle import route, run, template, request, redirect
 import db
 import os
+
+
+def search():
+    name_filtered = db.search_by_name(str(request.query["name"]))
+
+    filtered = []
+    for id, name, link, rating in name_filtered:
+        pc = db.get_criterions_id_for_place(id)
+
+        add_to_filtered = True
+        for x in request.query:
+            if x != "name" and str(x).isnumeric():
+                if all([pc[i][0] != int(x) for i in range(len(pc))]):
+                    add_to_filtered = False
+                    break
+
+        if add_to_filtered:
+            filtered.append(db.get_place_profile(id))
+
+    return filtered
 
 
 @route('/add_place')
@@ -20,12 +40,12 @@ def main_page():
     template_file = os.path.join(template_dir, template_name)
     try:
         name = str(request.query.name)
-        finds = [db.get_place_profile(0), db.get_place_profile(1), db.get_place_profile(2)]
-        print(finds)
+        finds = search()
         print('requested name:', name)
     except ValueError as e:
         print('no name request')
         finds = []
+        raise e
     return template(template_file, finds=finds)
 
 

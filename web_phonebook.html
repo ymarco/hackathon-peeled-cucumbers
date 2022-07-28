@@ -27,20 +27,26 @@
     <h1>Look for a restaurant</h1>
 </header>
 
-<form action="/foollergy" method="GET">
+<form action="/" method="GET">
     <p> Search by name </p>
-    <input type="text" name="name" placeholder="Enter a name"/>
+    <input type="text" name="name" placeholder="Enter a name">
 
     <p> Search by criterion </p>
-    <select>
-        <option value="vegan">Vegan</option>
-        <option value="milk allergy">Milk Allergy</option>
-    </select>
+    <input name="0" type="checkbox">Vegeterian</input>
+    <input name="1" type="checkbox">Gluten-free</input>
+    <input name="2" type="checkbox">Lactose-free</input>
+    <br>
+    <input name="3" type="checkbox">Eggs</input>
+    <input name="4" type="checkbox">Vegan</input>
+    <input name="5" type="checkbox">Nuts</input>
+    <br>
+    <input name="6" type="checkbox">High-Protein</input>
+    <input name="7" type="checkbox">Crohn</input>
+    <input name="8" type="checkbox">Sesame</input>
 
+    <br>
     <button type="submit">Refresh</button>
 </form>
-<p/>
-<p/>
 <table>
     <tr>
         <th>Name</th>

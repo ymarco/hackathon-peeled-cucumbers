@@ -24,6 +24,13 @@ cur.execute('''CREATE TABLE IF NOT EXISTS place_criterions
 # cur.execute("INSERT INTO places VALUES (0, 'Fabiano', 'google.com', 4)")
 # cur.execute('''INSERT INTO criterions VALUES (0, 'Vegeterian')''')
 # cur.execute('''INSERT INTO criterions VALUES (1, 'Gluten-free')''')
+# cur.execute('''INSERT INTO criterions VALUES (2, 'Lactose-free')''')
+# cur.execute('''INSERT INTO criterions VALUES (3, 'Eggs')''')
+# cur.execute('''INSERT INTO criterions VALUES (4, 'Vegan')''')
+# cur.execute('''INSERT INTO criterions VALUES (5, 'Nuts')''')
+# cur.execute('''INSERT INTO criterions VALUES (6, 'High-Protein')''')
+# cur.execute('''INSERT INTO criterions VALUES (7, 'Crohn')''')
+# cur.execute('''INSERT INTO criterions VALUES (8, 'Sesame')''')
 # cur.execute('''INSERT INTO place_criterions VALUES (0, 1, 'Percentage of gluten-free dishes', "80%")''')
 
 # Save (commit) the changes
@@ -47,9 +54,18 @@ def get_place_profile(id):
         raise ValueError("Place %d does not exist" % id)
     criterions = cur.execute('''
 SELECT c.name, pc.description, pc.value FROM criterions c
-JOIN place_criterions pc ON pc.criterion_id = c.criterion_id
-    ''')
+JOIN place_criterions pc ON pc.criterion_id = c.criterion_id AND pc.place_id=?
+    ''', (id,))
     return place[1], place[2], place[3], list(criterions)
+
+
+def get_criterions_id_for_place(place_id):
+    criterions_ids = cur.execute('''
+    SELECT pc.criterion_id FROM criterions c
+    JOIN place_criterions pc ON pc.criterion_id = c.criterion_id AND pc.place_id=?
+        ''', (place_id,))
+
+    return list(criterions_ids)
 
 
 def add_place(name, link, rating):
@@ -88,3 +104,14 @@ def remove_place_criterion(place_id, criterion_id):
     cur.execute("DELETE FROM place_criterions place_id=? AND criterion_id=?", (place_id,
                                                                                criterion_id))
     con.commit()
+
+
+def get(x):
+    cur.execute(f"SELECT * FROM {x}")
+    print(cur.fetchall())
+    con.commit()
+
+
+get("place_criterions")
+get("criterions")
+get("places")
